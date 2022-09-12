@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NoteDetails">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tv_toolbar_note_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary_dark">
+
+
+        <TextView
+            android:id="@+id/tv_title_of_note_detail"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_primary_dark"
+            android:inputType="textVisiblePassword|textNoSuggestions"
+            android:paddingTop="12dp"
+            android:text="this is the title"
+            android:textColor="@color/color_primary_text"
+
+            android:textSize="32sp"
+
+
+            />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/tv_content_of_note_detail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tv_toolbar_note_detail"
+        android:background="@color/color_primary_dark"
+        android:gravity="top|start"
+        android:inputType="textVisiblePassword|textNoSuggestions"
+        android:padding="16dp"
+        android:text="This is the content"
+        android:textColor="@color/color_primary_text"
+
+        android:textSize="20sp"
+
+
+        />
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/save_edited_note_fab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/color_accent"
+        android:scaleType="center"
+        android:src="@drawable/ic_save"
+        app:borderWidth="0dp"
+
+
+        >
+
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/edit_note_fab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|right"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="96dp"
+        android:backgroundTint="@color/color_accent"
+        android:maxWidth="56dp"
+        android:maxHeight="56dp"
+        android:scaleType="center"
+        android:src="@drawable/ic_edit"
+        app:borderWidth="0dp"
+
+
+        >
+
+
+    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/et_toolbar_note_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/color_primary_dark"
+        android:visibility="gone"
+        >
+
+
+        <EditText
+            android:id="@+id/et_edit_title_of_note"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_primary_dark"
+
+            android:inputType="textVisiblePassword|textNoSuggestions"
+            android:paddingTop="12dp"
+            android:textColor="@color/color_primary_text"
+            android:textColorHint="@color/color_secondary_lighter"
+            android:textSize="32sp"
+            android:visibility="gone"
+
+            />
+
+
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/et_edit_content_note"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/et_toolbar_note_detail"
+        android:background="@color/color_primary_dark"
+        android:gravity="top|start"
+
+        android:inputType="textVisiblePassword|textNoSuggestions"
+        android:padding="16dp"
+        android:textColor="@color/color_primary_text"
+        android:textColorHint="@color/color_primary_light"
+        android:textSize="20sp"
+        android:visibility="gone"
+
+
+        />
+
+
+</RelativeLayout>
