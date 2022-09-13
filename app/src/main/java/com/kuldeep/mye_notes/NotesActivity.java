@@ -217,7 +217,9 @@ public class NotesActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-      AlertDialog dialog =  new AlertDialog.Builder(this)
+
+
+      AlertDialog dialog =  new AlertDialog.Builder(NotesActivity.this)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setTitle("Close App")
                 .setMessage("Are you sure you want to close this app?")

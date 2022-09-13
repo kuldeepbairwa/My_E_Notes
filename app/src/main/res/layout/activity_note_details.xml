@@ -129,7 +129,7 @@
         android:background="@color/color_primary_dark"
         android:gravity="top|start"
 
-        android:inputType="textVisiblePassword|textNoSuggestions"
+        android:inputType="textVisiblePassword|textNoSuggestions|textMultiLine"
         android:padding="16dp"
         android:textColor="@color/color_primary_text"
         android:textColorHint="@color/color_primary_light"
