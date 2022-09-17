@@ -8,6 +8,16 @@
     android:fitsSystemWindows="true"
     tools:context=".CreateNote">
 
+    <ProgressBar
+        android:id="@+id/progressBar_create_note"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"/>
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:id="@+id/relative_layout_create_note"
+    android:layout_height="match_parent">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_create_note"
         android:layout_width="match_parent"
@@ -73,5 +83,5 @@
     </com.google.android.material.floatingactionbutton.FloatingActionButton>
 
 
-
+</RelativeLayout>
 </RelativeLayout>

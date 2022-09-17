@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,6 +35,8 @@ public class NoteDetails extends AppCompatActivity {
     private Toolbar tv_Toolbar, et_Toolbar;
     private EditText etEditNoteTitle, etEditNoteContent;
     private TextView tvEditNoteTitle, tvEditNoteContent;
+    private ProgressBar progressBar;
+    private RelativeLayout relativeLayout;
     private FirebaseAuth mAuth;
     private FirebaseFirestore firebaseFirestore;
     private FirebaseUser firebaseUser;
@@ -43,6 +47,8 @@ public class NoteDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_note_details);
+        relativeLayout = findViewById(R.id.relative_layout_note_details);
+        progressBar = findViewById(R.id.progressBar_note_details);
         editNotesFab = findViewById(R.id.edit_note_fab);
         saveEditedNoteFab = findViewById(R.id.save_edited_note_fab);
         etEditNoteTitle = findViewById(R.id.et_edit_title_of_note);
@@ -103,8 +109,11 @@ public class NoteDetails extends AppCompatActivity {
                 tvEditNoteContent.setVisibility(View.VISIBLE);
                 String newTitle = etEditNoteTitle.getText().toString();
                 String newContent = etEditNoteContent.getText().toString();
-
+                relativeLayout.setAlpha(0.1f);
+                progressBar.setVisibility(View.VISIBLE);
                 if(newTitle.isEmpty() || newContent.isEmpty()){
+                    relativeLayout.setAlpha(1.0f);
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(NoteDetails.this, "no changes were made!", Toast.LENGTH_SHORT).show();
                 }
                 else{
@@ -112,9 +121,12 @@ public class NoteDetails extends AppCompatActivity {
                     Map<String,Object> note = new HashMap<>();
                     note.put("title",newTitle);
                     note.put("content",newContent);
+
                     documentReference.set(note).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
+                            relativeLayout.setAlpha(1.0f);
+                            progressBar.setVisibility(View.GONE);
                             onBackPressed();
                             Toast.makeText(NoteDetails.this, "note is updated!", Toast.LENGTH_SHORT).show();
 
@@ -122,6 +134,8 @@ public class NoteDetails extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
+                            relativeLayout.setAlpha(1.0f);
+                            progressBar.setVisibility(View.GONE);
                             Toast.makeText(NoteDetails.this, "failed to update note!", Toast.LENGTH_SHORT).show();
                         }
                     });

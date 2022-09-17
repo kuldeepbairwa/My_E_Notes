@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 
@@ -33,6 +35,8 @@ public class CreateNote extends AppCompatActivity {
     private FirebaseFirestore firebaseFirestore;
     private Toolbar toolbar;
     private Boolean isDataSaved;
+    private ProgressBar progressBar;
+    private RelativeLayout relativeLayout;
 
 
     @Override
@@ -44,6 +48,8 @@ public class CreateNote extends AppCompatActivity {
         et_title_note = findViewById(R.id.et_create_title_of_note);
         et_content_note = findViewById(R.id.et_create_content_note);
         toolbar = findViewById(R.id.toolbar_create_note);
+        progressBar = findViewById(R.id.progressBar_create_note);
+        relativeLayout = findViewById(R.id.relative_layout_create_note);
         isDataSaved = false;
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -57,7 +63,14 @@ public class CreateNote extends AppCompatActivity {
         mSaveNote.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                relativeLayout.setAlpha(0.1f);
+                progressBar.setVisibility(View.VISIBLE);
+
+
                 saveData();
+
+
             }
         });
     }
@@ -66,6 +79,8 @@ public class CreateNote extends AppCompatActivity {
         String title = et_title_note.getText().toString();
         String content = et_content_note.getText().toString();
         if (title.isEmpty() || content.isEmpty()){
+            relativeLayout.setAlpha(1.0f);
+            progressBar.setVisibility(View.GONE);
             Toast.makeText(CreateNote.this, "both title and content is required!", Toast.LENGTH_SHORT).show();
         }
         else{
@@ -79,11 +94,15 @@ public class CreateNote extends AppCompatActivity {
                 public void onSuccess(Void unused) {
                     Toast.makeText(CreateNote.this, "note saved successfully", Toast.LENGTH_SHORT).show();
                     isDataSaved = true;
+                    relativeLayout.setAlpha(1.0f);
+                    progressBar.setVisibility(View.GONE);
                     startActivity(new Intent(CreateNote.this,NotesActivity.class));
                 }
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
+                    relativeLayout.setAlpha(1.0f);
+                    progressBar.setVisibility(View.GONE);
                     Toast.makeText(CreateNote.this, "something went wrong notes is not saved!", Toast.LENGTH_SHORT).show();
                 }
             });
